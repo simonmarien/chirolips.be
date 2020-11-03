@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <img src="../../../favicon.ico"
+           width="80" alt="" class="d-inline-block align-middle mr-2">
+      Als je't mij vraagt Chiro Lips</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/over-ons']">Over ons</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Afdelingen</a>
+          <div class="dropdown-menu bg-secondary" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item text-white-50" href="html/afdelingen.html">De afdelingen</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-white-50" href="html/vedetjes.html">Vedetjes</a>
+            <a class="dropdown-item text-white-50" href="html/speelclub.html">Speelclub</a>
+            <a class="dropdown-item text-white-50" href="html/rakwis.html">Rakwi's</a>
+            <a class="dropdown-item text-white-50" href="html/titos.html">Tito's</a>
+            <a class="dropdown-item text-white-50" href="html/ketis.html">Keti's</a>
+            <a class="dropdown-item text-white-50" href="html/aspiranten.html">Aspiranten</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/kalender']">Kalender</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLinkActive="active" [routerLink]="['/hotlips']">Hotlips</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
