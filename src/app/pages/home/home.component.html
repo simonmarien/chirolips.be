@@ -12,56 +12,56 @@
       <p>Iedereen van 6 tot en met 18 jaar die houdt van een leuk spel, samenzijn met vrienden van je eigen
         leeftijd, ravotten, een spannend verhaal, knutselen, op kamp gaan, kortom, voor iedereen die zich niet
         graag verveelt!</p>
-      <a class="btn btn-primary btn-lg" href="html/overOns.html">Lees verder &raquo;</a>
+      <a class="btn btn-primary btn-lg" routerLinkActive="active" [routerLink]="['/over-ons']">Lees verder &raquo;</a>
     </div>
     <app-contact></app-contact>
-    </div>
+  </div>
 
-      <!-- /.row -->
+  <!-- /.row -->
 
-      <div class="row">
-        <div class="col-md-4 mb-5">
-          <div class="card h-100">
-            <img class="card-img-top"
-                 src="https://image.isu.pub/151003095654-a477c782796c445f1baa0f21b0e13016/jpg/page_1.jpg" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Hot Lips</h4>
-              <p class="card-text">De maandelijkse Hot Lips is ons belangrijkste communicatiemiddel naar de leden
-                toe. Hier vind je wat er elke week op het programma staat.</p>
-            </div>
-            <div class="card-footer">
-              <a href="html/hotlips.html" class="btn btn-primary">Lees verder &raquo;</a>
-            </div>
-          </div>
+  <div class="row">
+    <div class="col-md-4 mb-5">
+      <div class="card h-100">
+        <img class="card-img-top"
+             src="assets/media/hotlips.jpg" alt="">
+        <div class="card-body">
+          <h4 class="card-title">Hot Lips</h4>
+          <p class="card-text">De maandelijkse Hot Lips is ons belangrijkste communicatiemiddel naar de leden
+            toe. Hier vind je wat er elke week op het programma staat.</p>
         </div>
-        <div class="col-md-4 mb-5">
-          <div class="card h-100">
-            <img class="card-img-top"
-                 src="https://wafeltjes.be/app/uploads/2016/10/ambachtelijke-wafeltjes-vanille.jpg" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Wafeltjesslag</h4>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse
-                necessitatibus neque sequi doloribus totam ut praesentium aut.</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Find Out More!</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-5">
-          <div class="card h-100">
-            <img class="card-img-top" src="https://www.chirolips.be/img/IMG-20180928-WA0000.jpg" alt="">
-            <div class="card-body">
-              <h4 class="card-title">Bouw</h4>
-              <p class="card-text">Koop Wafels</p>
-            </div>
-            <div class="card-footer">
-              <a href="#" class="btn btn-primary">Find Out More!</a>
-            </div>
-          </div>
+        <div class="card-footer">
+          <a routerLinkActive="active" [routerLink]="['/hotlips']" class="btn btn-primary">Lees verder &raquo;</a>
         </div>
       </div>
-      <!-- /.row -->
-
     </div>
-    <!-- /.container -->
+    <div class="col-md-4 mb-5">
+      <div class="card h-100">
+        <img class="card-img-top"
+             src="assets/media/covid19.jpg" alt="">
+        <div class="card-body">
+          <h4 class="card-title">Corona</h4>
+          <p class="card-text">Wij volgen de meest recente protocollen en richtlijnen opgesteld door Chirojeugd
+            Vlaanderen. Lees deze maatregelen door te klikken op lees verder.</p>
+        </div>
+        <div class="card-footer">
+          <a href="https://chiro.be/corona" class="btn btn-primary">Lees meer &raquo;</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 mb-5">
+      <div class="card h-100">
+        <img class="card-img-top" src="assets/media/formatie.jpg" alt="">
+        <div class="card-body">
+          <h4 class="card-title">Naar de Chiro?</h4>
+          <p class="card-text">Wil je starten op de chiro maar weet je niet wat alle afdelingen zijn en waar je terecht gaat komen? Lees dan verder door op de knop te drukken.</p>
+        </div>
+        <div class="card-footer">
+          <a routerLinkActive="active" [routerLink]="['/afdelingen']" class="btn btn-primary">Lees meer &raquo;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.row -->
+
+</div>
+<!-- /.container -->
