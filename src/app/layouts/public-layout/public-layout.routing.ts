@@ -3,12 +3,25 @@ import {HomeComponent} from '../../pages/home/home.component';
 import {OverOnsComponent} from '../../pages/over-ons/over-ons.component';
 import {KalenderComponent} from '../../pages/kalender/kalender.component';
 import {HotlipsComponent} from '../../pages/hotlips/hotlips.component';
+import {AfdelingenComponent} from '../../pages/afdelingen/afdelingen.component';
+import {VedetjesComponent} from '../../pages/vedetjes/vedetjes.component';
+import {AspirantenComponent} from '../../pages/aspiranten/aspiranten.component';
+import {KetisComponent} from '../../pages/ketis/ketis.component';
+import {TitosComponent} from '../../pages/titos/titos.component';
+import {RakwisComponent} from '../../pages/rakwis/rakwis.component';
+import {SpeelclubComponent} from '../../pages/speelclub/speelclub.component';
 
 export const PublicLayoutRoutes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'over-ons', component: OverOnsComponent},
   { path: 'kalender', component: KalenderComponent},
   { path: 'hotlips', component: HotlipsComponent},
-  { path: 'over-ons', component: OverOnsComponent}
-
+  { path: 'over-ons', component: OverOnsComponent},
+  { path: 'afdelingen', component: AfdelingenComponent},
+  { path: 'vedetjes', component: VedetjesComponent},
+  { path: 'speelclub', component: SpeelclubComponent},
+  { path: 'rakwis', component: RakwisComponent},
+  { path: 'titos', component: TitosComponent},
+  { path: 'ketis', component: KetisComponent},
+  { path: 'aspiranten', component: AspirantenComponent},
 ];
