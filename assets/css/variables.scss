@@ -294,5 +294,17 @@ a.text-secondary:hover, a.text-secondary:focus {
   background-color:#E1143C;
 }
 
+@media only screen and (max-width: 450px) {
+
+  .navbar-brand {
+    font-size: 3vw !important;
+  }
+
+  .navbar-image {
+    max-width: 25%;
+  }
+
+}
+
 $secondary: #00124D;
 $primary: #E1143C;
