@@ -13,7 +13,7 @@ export class FirebaseService {
   public isLoggedIn: boolean
   private user: User
 
-  constructor(public firebaseAuth: AngularFireAuth, public afs: AngularFirestore, private router: Router) {
+  constructor(public firebaseAuth: AngularFireAuth, public afs: AngularFirestore, public router: Router) {
 
     this.user = auth().currentUser
   }
@@ -25,10 +25,12 @@ export class FirebaseService {
         localStorage.setItem('user', JSON.stringify(res.user))
         this.user = res.user
       })
+    setTimeout(()=>{this.router.navigate(['dashboard'])}, 500)
   }
 
   logout() {
-    return this.firebaseAuth.signOut().then(() => {this.router.navigate(['login'])})
+    this.firebaseAuth.signOut()
+    setTimeout(()=>{this.router.navigate(['login'])}, 500)
     //localStorage.removeItem('user')
   }
 }
