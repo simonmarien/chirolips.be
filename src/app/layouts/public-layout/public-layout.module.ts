@@ -20,6 +20,7 @@ import {RakwisComponent} from '../../pages/rakwis/rakwis.component';
 import {TitosComponent} from '../../pages/titos/titos.component';
 import {KetisComponent} from '../../pages/ketis/ketis.component';
 import {AspirantenComponent} from '../../pages/aspiranten/aspiranten.component';
+import {LoginComponent} from '../../pages/login/login.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {AspirantenComponent} from '../../pages/aspiranten/aspiranten.component';
     RakwisComponent,
     TitosComponent,
     KetisComponent,
-    AspirantenComponent
+    AspirantenComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,

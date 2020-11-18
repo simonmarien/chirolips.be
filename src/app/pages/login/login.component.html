@@ -1,1 +1,36 @@
-<p>login works!</p>
+<div class="container mt--8 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
+      <div class="card bg-secondary shadow border-0">
+        <div class="card-body px-lg-5 py-lg-5">
+          <div class="text-center text-white mb-4">
+            <p>Log in met credentials</p>
+          </div>
+          <form role="form">
+            <div class="form-group mb-3">
+              <div class="input-group input-group-alternative">
+                <input class="form-control" placeholder="Email" type="email" #email>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative">
+                <input class="form-control" placeholder="Password" type="password" #password>
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="button" class="btn btn-primary my-4">Log in</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-6">
+          <a href="javascript:void(0)" class="text-light"><small>Forgot password?</small></a>
+        </div>
+        <div class="col-6 text-right">
+          <a href="javascript:void(0)" class="text-light" routerLinkActive="active" [routerLink]="['/register']"><small>Create new account</small></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

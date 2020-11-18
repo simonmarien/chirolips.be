@@ -20,8 +20,7 @@ import { LoginComponent } from './pages/login/login.component';
   declarations: [
     AppComponent,
     PublicLayoutComponent,
-    AdminLayoutComponent,
-    LoginComponent
+    AdminLayoutComponent
   ],
   imports: [
     AppRoutingModule,
