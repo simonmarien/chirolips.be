@@ -8,18 +8,15 @@ import {Router} from '@angular/router';
   styleUrls: ['./admin-navbar.component.scss']
 })
 export class AdminNavbarComponent implements OnInit {
-  public isLoaded: boolean = false
-  constructor(private firebaseService: FirebaseService, private router: Router) { }
+  public isLoaded: boolean = true
+  constructor(public firebaseService: FirebaseService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  async logout(){
-    await this.firebaseService.logout()
+  logout(){
+    this.firebaseService.logout();
     console.log('Logged out')
-    await this.firebaseService.logout();
-    this.isLoaded = false
-    this.router.navigate(['home'])
   }
 
 }
