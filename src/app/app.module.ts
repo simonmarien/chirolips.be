@@ -1,40 +1,27 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {PublicLayoutComponent} from './layouts/public-layout/public-layout.component';
 import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ComponentsModule} from './components/components.module';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { OverOnsComponent } from './pages/over-ons/over-ons.component';
-import { KalenderComponent } from './pages/kalender/kalender.component';
-import { HotlipsComponent } from './pages/hotlips/hotlips.component';
-import { AfdelingenComponent } from './pages/afdelingen/afdelingen.component';
-import { VedetjesComponent } from './pages/vedetjes/vedetjes.component';
-import { SpeelclubComponent } from './pages/speelclub/speelclub.component';
-import { RakwisComponent } from './pages/rakwis/rakwis.component';
-import { TitosComponent } from './pages/titos/titos.component';
-import { KetisComponent } from './pages/ketis/ketis.component';
-import { AspirantenComponent } from './pages/aspiranten/aspiranten.component';
+import {AdminLayoutComponent} from './layouts/admin-layout/admin-layout.component';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import { LoginComponent } from './pages/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PublicLayoutComponent,
-    OverOnsComponent,
-    KalenderComponent,
-    HotlipsComponent,
-    AfdelingenComponent,
-    VedetjesComponent,
-    SpeelclubComponent,
-    RakwisComponent,
-    TitosComponent,
-    KetisComponent,
-    AspirantenComponent
+    AdminLayoutComponent,
+    LoginComponent
   ],
   imports: [
     AppRoutingModule,
@@ -43,8 +30,22 @@ import { AspirantenComponent } from './pages/aspiranten/aspiranten.component';
     HttpClientModule,
     ComponentsModule,
     NgbModule,
-    RouterModule],
-  providers: [],
+    RouterModule,
+    AngularFireModule.initializeApp({
+      apiKey: 'AIzaSyCi7nyq311qndTpJrVIcMGjuOscf7I3cNU',
+      authDomain: 'chirolips-74bef.firebaseapp.com',
+      databaseURL: 'https://chirolips-74bef.firebaseio.com',
+      projectId: 'chirolips-74bef',
+      storageBucket: 'chirolips-74bef.appspot.com',
+      messagingSenderId: '640833801767',
+      appId: '1:640833801767:web:92ce066f584febf3c18802',
+      measurementId: 'G-PEZEV8JHNM'
+    }),
+    AngularFireAuthModule,
+    AngularFirestoreModule
+  ],
+  providers: [AngularFireAuth],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
