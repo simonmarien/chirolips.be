@@ -30,7 +30,7 @@ export class FirebaseService {
 
   logout() {
     this.firebaseAuth.signOut()
-    setTimeout(()=>{this.router.navigate(['login'])}, 500)
+    setTimeout(()=>{this.router.navigate(['home'])}, 500)
     //localStorage.removeItem('user')
   }
 }

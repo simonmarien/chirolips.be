@@ -8,18 +8,20 @@ import {HeaderComponent} from './header/header.component';
 import {ContactComponent} from './contact/contact.component';
 import {AdminNavbarComponent} from './admin-navbar/admin-navbar.component';
 import { AddDateComponent } from './add-date/add-date.component';
+import { DisplayDatesComponent } from './display-dates/display-dates.component';
 
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, HeaderComponent, ContactComponent, AdminNavbarComponent, AddDateComponent],
-    exports: [
-        NavbarComponent,
-        FooterComponent,
-        HeaderComponent,
-        ContactComponent,
-        AdminNavbarComponent,
-        AddDateComponent
-    ],
+  declarations: [NavbarComponent, FooterComponent, HeaderComponent, ContactComponent, AdminNavbarComponent, AddDateComponent, DisplayDatesComponent],
+  exports: [
+    NavbarComponent,
+    FooterComponent,
+    HeaderComponent,
+    ContactComponent,
+    AdminNavbarComponent,
+    AddDateComponent,
+    DisplayDatesComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,
