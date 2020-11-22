@@ -2,13 +2,14 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-8 mb-5">
+    <div class="col-md-8 mb-5" *ngIf="loaded">
       <h2>Kalender</h2>
       <hr>
       <p>Een chirojaar is niet enkel activiteiten in afdeling op zondag maar er zijn ook verschillende andere speciale
         activiteiten. Wat
         deze zijn kan je hieronder zien.</p>
       <div class="dropdown-divider"></div>
+      <div *ngFor="let dates of refactored_dates"></div>
       <h5>November</h5>
       <p><span class="text-primary">22 november Kriko: </span>Kriko is de feestdag van de chiro. Elk jaar beleven we met
         iedereen een speciale activiteit om hierbij stil te staan. Normaal gezien eten is dit een hele dag en eten we
