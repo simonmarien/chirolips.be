@@ -9,24 +9,18 @@
         activiteiten. Wat
         deze zijn kan je hieronder zien.</p>
       <div class="dropdown-divider"></div>
-      <div *ngFor="let dates of refactored_dates"></div>
-      <h5>November</h5>
-      <p><span class="text-primary">22 november Kriko: </span>Kriko is de feestdag van de chiro. Elk jaar beleven we met
-        iedereen een speciale activiteit om hierbij stil te staan. Normaal gezien eten is dit een hele dag en eten we
-        warm tijdens de middag. Spijtig genoeg steekt Corona hier een stokje voor dit jaar.</p><br>
-
-      <h5>Januari</h5>
-      <p><span class="text-primary">16 januari katogentocht: </span>De oudleiding steekt elk jaar de katogentocht in
-        elkaar voor ouders en leden. Het is een wandeling met elk jaar leuk ingekleed met opdrachten en toneel. Meer
-        informatie volgt.</p><br>
-
-      <h5>Mei</h5>
-      <p><span class="text-primary">30-1-2 mei Ribbekesfeesten en quiz: </span>Kom lekkere ribbekes eten of quizen om
-        onze chiro te steunen! Meer informatie volgt.</p><br>
-
-      <h5>Augustus</h5>
-      <p><span class="text-primary">1-10 augustus Bivak: </span>Het hoogtepunt van het chirojaar is het bivak. Dit jaar
-        gaan we met zen allen naar Lommel. Houd deze datum dus zeker vrij!</p>
+      <div *ngFor="let date of dates | async">
+        <div *ngIf="getDatum(date).endDate > -1">
+          <h5>{{getDatum(date).getDutchMonth()}}</h5>
+          <p><span class="text-primary">{{getDatum(date).startDate.getDate() + "-" + getDatum(date).endDate.getDate() + " " + getDatum(date).getDutchMonth().toLowerCase() + " " + date.name + ":"}}</span>
+            {{date.description}}</p><br>
+        </div>
+        <div *ngIf="hasEndDate(getDatum(date).endDate)">
+          <h5>{{getDatum(date).getDutchMonth()}}</h5>
+          <p><span class="text-primary">{{getDatum(date).startDate.getDate()+ " " + getDatum(date).getDutchMonth().toLowerCase() + " " + date.name + ":"}}</span>
+            {{date.description}}</p><br>
+        </div>
+      </div>
 
     </div>
 

@@ -5,15 +5,18 @@ export class Datum {
   private _description: string
 
 
-  constructor(name: string, startDate: Date, description: string, endDate?: Date) {
+  constructor(name: string, startDate: string, description: string, endDate?: string) {
     this._name = name;
-    this._startDate = startDate;
-    this._endDate = endDate;
+    this._startDate = new Date(startDate);
+    this._endDate = new Date(endDate);
     this._description = description;
   }
 
-  getDutchMonth(date: Date): string{
-    switch (date.getMonth()){
+  getDutchMonth(): string{
+    let comp: Date = this.startDate
+    if (this.endDate.getMonth()>-1)
+      comp = this.endDate
+    switch (comp.getMonth()){
       case 0: return 'Januari'
       case 1: return 'Februari'
       case 2: return 'Maart'
