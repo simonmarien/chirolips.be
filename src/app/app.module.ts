@@ -16,6 +16,8 @@ import {AngularFireAuth, AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { AdminKalenderComponent } from './pages/admin-kalender/admin-kalender.component';
+import { AdminHotlipsComponent } from './pages/admin-hotlips/admin-hotlips.component';
 
 @NgModule({
   declarations: [
