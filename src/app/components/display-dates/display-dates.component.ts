@@ -13,7 +13,7 @@ export class DisplayDatesComponent implements OnInit {
   constructor(private afs: AngularFirestore) { }
 
   ngOnInit(): void {
-    this.dates = this.afs.collection('dates', ref => ref.orderBy('beginDate')).valueChanges()
+    this.dates = this.afs.collection('kalender', ref => ref.orderBy('beginDate')).valueChanges()
   }
 
   removeDate(uid: string){

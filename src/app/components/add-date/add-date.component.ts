@@ -27,8 +27,11 @@ export class AddDateComponent implements OnInit {
     };
     if (new Datum(name, beginDate, description, endDate).isOneDay()) {
       this.afs.collection('kalender').doc(endDate.substr(0, 7)).collection('dates').doc(uid).set(data);
+      this.afs.collection('kalender').doc(endDate.substr(0, 7)).set({date: endDate})
     } else {
       this.afs.collection('kalender').doc(beginDate.substr(0, 7)).collection('dates').doc(uid).set(data);
+      this.afs.collection('kalender').doc(beginDate.substr(0, 7)).set({date: beginDate})
     }
+
   }
 }
