@@ -1,0 +1,15 @@
+RewriteEngine on
+
+RewriteOptions inherit
+RewriteCond %{HTTP_HOST} ^chirolips\.be$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.chirolips\.be$
+RewriteRule ^/?$ "http\:\/\/www\.chirolips\.be\" [R=301,L]
+RewriteCond %{HTTP_HOST} ^chirolips\.be$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.chirolips\.be$
+RewriteRule ^public_html\/$ "http\:\/\/www\.chirolips\.be\" [R=301,L]
+RewriteCond %{HTTP_HOST} ^chirolips\.be$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.chirolips\.be$
+RewriteRule ^index\.html$ "http\:\/\/www\.chirolips\.be\" [R=301,L]
+RewriteCond %{HTTP_HOST} ^chirolips\.be$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.chirolips\.be$
+RewriteRule ^home\.html$ "http\:\/\/www\.chirolips\.be\" [R=301,L]
