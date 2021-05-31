@@ -1,15 +1,39 @@
 RewriteEngine on
 
 RewriteOptions inherit
+# RewriteCond %{HTTP_HOST} ^chirolips\.be$ [OR]
+# RewriteCond %{HTTP_HOST} ^www\.chirolips\.be$
+# RewriteRule ^/?$ "https\:\/\/www\.chirolips\.be\" [R=301,L]
 RewriteCond %{HTTP_HOST} ^chirolips\.be$ [OR]
 RewriteCond %{HTTP_HOST} ^www\.chirolips\.be$
-RewriteRule ^/?$ "http\:\/\/www\.chirolips\.be\" [R=301,L]
+RewriteRule ^public_html\/$ "https\:\/\/www\.chirolips\.be\" [R=301,L]
 RewriteCond %{HTTP_HOST} ^chirolips\.be$ [OR]
 RewriteCond %{HTTP_HOST} ^www\.chirolips\.be$
-RewriteRule ^public_html\/$ "http\:\/\/www\.chirolips\.be\" [R=301,L]
+RewriteRule ^index\.html$ "https\:\/\/www\.chirolips\.be\" [R=301,L]
 RewriteCond %{HTTP_HOST} ^chirolips\.be$ [OR]
 RewriteCond %{HTTP_HOST} ^www\.chirolips\.be$
-RewriteRule ^index\.html$ "http\:\/\/www\.chirolips\.be\" [R=301,L]
-RewriteCond %{HTTP_HOST} ^chirolips\.be$ [OR]
-RewriteCond %{HTTP_HOST} ^www\.chirolips\.be$
-RewriteRule ^home\.html$ "http\:\/\/www\.chirolips\.be\" [R=301,L]
+RewriteRule ^home\.html$ "https\:\/\/www\.chirolips\.be\" [R=301,L]
+
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f [OR]
+RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d
+RewriteRule ^ - [L]
+
+# If the requested resource doesn't exist, use index.html
+RewriteRule ^ /index.html
+
+# Disable browser caching for all files that don't get a hash string by Angular.
+<FilesMatch "^(?!.*\.([0-9a-z]{20})\.).*$">
+
+<IfModule mod_headers.c>
+FileETag None
+Header unset ETag
+Header unset Pragma
+Header unset Cache-Control
+Header unset Last-Modified
+Header set Pragma "no-cache"
+Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+Header set Expires "Mon, 10 Apr 1972 00:00:00 GMT"
+</IfModule>
+
+</FilesMatch>
+
