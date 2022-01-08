@@ -27,5 +27,5 @@ export const PublicLayoutRoutes: Routes = [
   { path: 'ketis', component: KetisComponent},
   { path: 'aspiranten', component: AspirantenComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'wafeltjes', component: RibbekesComponent}
+  { path: 'pastaspi', component: RibbekesComponent}
 ];
