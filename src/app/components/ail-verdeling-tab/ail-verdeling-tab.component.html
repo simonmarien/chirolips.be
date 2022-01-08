@@ -1,0 +1,66 @@
+<div class="container-fluid mt--7">
+  <div class="row">
+    <div class="col-xl-12 order-xl-1">
+      <div class="card bg-primary text-secondary shadow">
+        <div class="card-header bg-white border-0">
+          <div class="row align-items-center">
+            <div class="col-8">
+              <h3 class="mb-0">Maak een nieuwe verdeling</h3>
+            </div>
+            <div class="col-4 text-right">
+              <a class="btn btn-primary" (click)="giveNewGroups(namen.value,groepen.value,keer.value,vijanden.value)">Maak</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body text-white">
+          <form>
+            <div class="pl-lg-4">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label class="form-control-label" for="start-date">Aantal afdelingen</label>
+                    <input class="form-control form-control-alternative" id="start-date" name="start-date" #groepen>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="end-date">Aantal zondagen</label>
+                    <input class="form-control form-control-alternative" id="end-date" name="end-date" #keer>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="description">Namen</label>
+                    <textarea placeholder="Danny Jos Jan Jemery" class="form-control form-control-alternative" rows="4"
+                              id="description" #namen></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="description">Welke duos niet bij elkaar?</label>
+                    <textarea placeholder="Danny/Jos Jan/Jemery duo1/duo2" class="form-control form-control-alternative"
+                              rows="4" #vijanden></textarea>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="row" *ngFor="let activiteit of result.groups;let indexOfelement=index">
+                    <div class="col-12 text-white font-weight-bold">
+                      <h4>Activiteit {{indexOfelement + 1}}:</h4>
+                    </div>
+                    <div *ngFor="let group of activiteit;let i=index">
+                      <div class="col-12 text-white">
+                        <h5>Groep {{i + 1}}:</h5>
+                      </div>
+                      <div *ngFor="let member of group">
+                        <li class="col-12" *ngIf="afdelingen.indexOf(member)===-1">{{member}}</li>
+                        <li class="col-12 font-weight-bold text-black-50" *ngIf="afdelingen.indexOf(member)>-1">{{member}}</li>
+                      </div>
+                      <div class="col-12 text-white">
+                      <h6>Score: {{result.groupScores[indexOfelement][i]}}</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

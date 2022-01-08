@@ -9,19 +9,23 @@ import {ContactComponent} from './contact/contact.component';
 import {AdminNavbarComponent} from './admin-navbar/admin-navbar.component';
 import { AddDateComponent } from './add-date/add-date.component';
 import { DisplayDatesComponent } from './display-dates/display-dates.component';
+import { AilVerdelingTabComponent } from './ail-verdeling-tab/ail-verdeling-tab.component';
+import { AilUitlegComponent } from './ail-uitleg/ail-uitleg.component';
 
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, HeaderComponent, ContactComponent, AdminNavbarComponent, AddDateComponent, DisplayDatesComponent],
-  exports: [
-    NavbarComponent,
-    FooterComponent,
-    HeaderComponent,
-    ContactComponent,
-    AdminNavbarComponent,
-    AddDateComponent,
-    DisplayDatesComponent
-  ],
+  declarations: [NavbarComponent, FooterComponent, HeaderComponent, ContactComponent, AdminNavbarComponent, AddDateComponent, DisplayDatesComponent, AilVerdelingTabComponent, AilUitlegComponent],
+    exports: [
+        NavbarComponent,
+        FooterComponent,
+        HeaderComponent,
+        ContactComponent,
+        AdminNavbarComponent,
+        AddDateComponent,
+        DisplayDatesComponent,
+        AilVerdelingTabComponent,
+        AilUitlegComponent
+    ],
   imports: [
     CommonModule,
     RouterModule,

@@ -11,12 +11,14 @@ import {HomeComponent} from '../../pages/home/home.component';
 import {DashboardComponent} from '../../pages/dashboard/dashboard.component';
 import {AdminKalenderComponent} from '../../pages/admin-kalender/admin-kalender.component';
 import {AdminHotlipsComponent} from '../../pages/admin-hotlips/admin-hotlips.component';
+import {AilVerdelerComponent} from '../../pages/ail-verdeler/ail-verdeler.component';
 
 
 @NgModule({
   declarations: [DashboardComponent,
     AdminKalenderComponent,
-    AdminHotlipsComponent],
+    AdminHotlipsComponent,
+    AilVerdelerComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(AdminLayoutRoutes),
