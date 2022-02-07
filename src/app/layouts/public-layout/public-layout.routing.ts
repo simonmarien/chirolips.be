@@ -14,7 +14,7 @@ import {LoginComponent} from '../../pages/login/login.component';
 import {RibbekesComponent} from '../../pages/ribbekes/ribbekes.component';
 
 export const PublicLayoutRoutes: Routes = [
-  { path: '', component: HomeComponent},
+  { path: 'home', component: HomeComponent},
   { path: 'over-ons', component: OverOnsComponent},
   { path: 'kalender', component: KalenderComponent},
   { path: 'hotlips', component: HotlipsComponent},

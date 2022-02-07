@@ -18,6 +18,13 @@ const routes: Routes = [
     data: { authGuardPipe: redirectLoggedInToDashboard}
   },
   {
+    path: 'pastaspi',
+    redirectTo: 'pastaspi',
+    pathMatch: 'full',
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin}
+  },
+  {
     path: '',
     component: PublicLayoutComponent,
     canActivate: [AngularFireAuthGuard],
@@ -47,7 +54,17 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'home',
     canActivate: [AngularFireAuthGuard],
-    data: { authGuardPipe: redirectLoggedInToDashboard}
+    data: { authGuardPipe: redirectUnauthorizedToLogin}
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
+    canActivate: [AngularFireAuthGuard],
+    data: {authGuardPipe: redirectLoggedInToDashboard}
+  },
+  {
+    path: '**',
+    redirectTo: 'home',
   }
 ];
 

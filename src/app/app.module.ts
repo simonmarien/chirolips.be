@@ -19,7 +19,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AdminKalenderComponent } from './pages/admin-kalender/admin-kalender.component';
 import { AdminHotlipsComponent } from './pages/admin-hotlips/admin-hotlips.component';
 import { RibbekesComponent } from './pages/ribbekes/ribbekes.component';
-import {LocationStrategy, PathLocationStrategy} from "@angular/common";
+import {HashLocationStrategy, LocationStrategy, PathLocationStrategy} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -48,7 +48,7 @@ import {LocationStrategy, PathLocationStrategy} from "@angular/common";
     AngularFireAuthModule,
     AngularFirestoreModule
   ],
-  providers: [AngularFireAuth,{provide: LocationStrategy, useClass: PathLocationStrategy}],
+  providers: [AngularFireAuth, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule {
