@@ -20,6 +20,7 @@ import { AdminKalenderComponent } from './pages/admin-kalender/admin-kalender.co
 import { AdminHotlipsComponent } from './pages/admin-hotlips/admin-hotlips.component';
 import { RibbekesComponent } from './pages/ribbekes/ribbekes.component';
 import {HashLocationStrategy, LocationStrategy, PathLocationStrategy} from "@angular/common";
+import { RibbekesfeestenComponent } from './pages/ribbekesfeesten/ribbekesfeesten.component';
 
 @NgModule({
   declarations: [

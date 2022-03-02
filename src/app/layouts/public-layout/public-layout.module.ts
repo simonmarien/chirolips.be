@@ -21,6 +21,7 @@ import {TitosComponent} from '../../pages/titos/titos.component';
 import {KetisComponent} from '../../pages/ketis/ketis.component';
 import {AspirantenComponent} from '../../pages/aspiranten/aspiranten.component';
 import {LoginComponent} from '../../pages/login/login.component';
+import {RibbekesfeestenComponent} from '../../pages/ribbekesfeesten/ribbekesfeesten.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {LoginComponent} from '../../pages/login/login.component';
     TitosComponent,
     KetisComponent,
     AspirantenComponent,
-    LoginComponent
+    LoginComponent,
+    RibbekesfeestenComponent
   ],
   imports: [
     CommonModule,
