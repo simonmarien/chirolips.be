@@ -21,6 +21,7 @@ import { AdminHotlipsComponent } from './pages/admin-hotlips/admin-hotlips.compo
 import { RibbekesComponent } from './pages/ribbekes/ribbekes.component';
 import {HashLocationStrategy, LocationStrategy, PathLocationStrategy} from "@angular/common";
 import { RibbekesfeestenComponent } from './pages/ribbekesfeesten/ribbekesfeesten.component';
+import { VerhuurComponent } from './pages/verhuur/verhuur.component';
 
 @NgModule({
   declarations: [
