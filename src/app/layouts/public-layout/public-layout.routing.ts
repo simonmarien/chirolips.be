@@ -12,8 +12,7 @@ import {RakwisComponent} from '../../pages/rakwis/rakwis.component';
 import {SpeelclubComponent} from '../../pages/speelclub/speelclub.component';
 import {LoginComponent} from '../../pages/login/login.component';
 import {RibbekesComponent} from '../../pages/ribbekes/ribbekes.component';
-import {RibbekesfeestenComponent} from "../../pages/ribbekesfeesten/ribbekesfeesten.component";
-import {VerhuurComponent} from "../../pages/verhuur/verhuur.component";
+import {VerhuurComponent} from '../../pages/verhuur/verhuur.component';
 
 export const PublicLayoutRoutes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -30,6 +29,6 @@ export const PublicLayoutRoutes: Routes = [
   { path: 'aspiranten', component: AspirantenComponent},
   { path: 'login', component: LoginComponent},
   { path: 'pastaspi', component: RibbekesComponent},
-  { path: 'ribbekesfeesten', component: RibbekesfeestenComponent},
+  { path: 'wafeltjes', component: RibbekesComponent},
   { path: 'verhuur', component: VerhuurComponent}
 ];

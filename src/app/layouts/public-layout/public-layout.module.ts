@@ -22,7 +22,7 @@ import {KetisComponent} from '../../pages/ketis/ketis.component';
 import {AspirantenComponent} from '../../pages/aspiranten/aspiranten.component';
 import {LoginComponent} from '../../pages/login/login.component';
 import {RibbekesfeestenComponent} from '../../pages/ribbekesfeesten/ribbekesfeesten.component';
-import {VerhuurComponent} from "../../pages/verhuur/verhuur.component";
+import {VerhuurComponent} from '../../pages/verhuur/verhuur.component';
 
 
 @NgModule({
