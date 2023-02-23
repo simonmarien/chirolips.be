@@ -13,6 +13,7 @@ import {SpeelclubComponent} from '../../pages/speelclub/speelclub.component';
 import {LoginComponent} from '../../pages/login/login.component';
 import {RibbekesComponent} from '../../pages/ribbekes/ribbekes.component';
 import {VerhuurComponent} from '../../pages/verhuur/verhuur.component';
+import {RibbekesfeestenComponent} from "../../pages/ribbekesfeesten/ribbekesfeesten.component";
 
 export const PublicLayoutRoutes: Routes = [
   { path: 'home', component: HomeComponent},
@@ -30,5 +31,6 @@ export const PublicLayoutRoutes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'pastaspi', component: RibbekesComponent},
   { path: 'wafeltjes', component: RibbekesComponent},
-  { path: 'verhuur', component: VerhuurComponent}
+  { path: 'verhuur', component: VerhuurComponent},
+  { path: 'ribbekesfeesten', component: RibbekesfeestenComponent}
 ];
