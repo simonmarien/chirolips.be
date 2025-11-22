@@ -1,44 +1,40 @@
-name: Build, Attest & Verify (Angular)
+name: Create Files, Attest & Verify
 
 on:
   push:
-    branches: [ Plain_version ]
+    branches: [ main ]
 
 jobs:
-  build-and-attest:
-    name: Build Angular & Create Attestation
+  create-and-attest:
+    name: Create 3 files & generate attestation
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write
-      attestations: write
+      id-token: write          # needed to create attestation
+      attestations: write      # needed to upload attestation
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+      - name: Create 3 files
+        run: |
+          mkdir output
+          echo "File A content" > output/file-a.txt
+          echo "File B content" > output/file-b.txt
+          echo "File C content" > output/file-c.txt
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build Angular app
-        run: npm run build -- --configuration production
-
-      - name: Upload build artifact
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: dist
-          path: dist/
+          name: output-files
+          path: output/
 
-      - name: Create build provenance attestation
+      - name: Create provenance attestation
         id: provenance
         uses: actions/attest-build-provenance@v3
         with:
-          subject-path: "dist/**"
+          subject-path: "output/**"
 
       - name: Save attestation path
         run: |
@@ -46,25 +42,24 @@ jobs:
 
 
   verify-attestation:
-    name: Verify Attestation Again (Separate Job)
-    needs: build-and-attest
+    name: Verify attestation in a separate job
+    needs: create-and-attest
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-    #   id-token: read   # needed for public attestation verification
+      contents: read      # enough to verify in a public repo
 
     steps:
-      - name: Download build artifact
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: dist
-          path: dist/
+          name: output-files
+          path: output/
 
       - name: Install GitHub CLI
         uses: actions/setup-gh-cli@v4
 
       - name: Verify attestation
         run: |
-          gh attestation verify dist/ \
+          gh attestation verify output/ \
             -R ${{ github.repository }} \
             --name-path "${{ env.ATTESTATION_PATH }}"
