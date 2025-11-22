@@ -56,9 +56,11 @@ jobs:
           path: output/
 
       # gh is already installed on GitHub-hosted runners
-      - name: Verify attestation
+      - name: Verify attestation per file
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh attestation verify output/ \
-            -R ${{ github.repository }}
+          for f in output/*; do
+            echo "Verifying $f..."
+            gh attestation verify "$f" -R ${{ github.repository }}
+          done
