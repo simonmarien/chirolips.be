@@ -1,0 +1,70 @@
+name: Build, Attest & Verify (Angular)
+
+on:
+  push:
+    branches: [ Plain_version ]
+
+jobs:
+  build-and-attest:
+    name: Build Angular & Create Attestation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Angular app
+        run: npm run build -- --configuration production
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Create build provenance attestation
+        id: provenance
+        uses: actions/attest-build-provenance@v3
+        with:
+          subject-path: "dist/**"
+
+      - name: Save attestation path
+        run: |
+          echo "ATTESTATION_PATH=$(cat $RUNNER_TEMP/created_attestation_paths.txt)" >> $GITHUB_ENV
+
+
+  verify-attestation:
+    name: Verify Attestation Again (Separate Job)
+    needs: build-and-attest
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    #   id-token: read   # needed for public attestation verification
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Install GitHub CLI
+        uses: actions/setup-gh-cli@v4
+
+      - name: Verify attestation
+        run: |
+          gh attestation verify dist/ \
+            -R ${{ github.repository }} \
+            --name-path "${{ env.ATTESTATION_PATH }}"
