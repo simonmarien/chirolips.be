@@ -42,11 +42,11 @@ jobs:
 
 
   verify-attestation:
-    name: Verify attestation in a separate job
+    name: Verify attestation in next job
     needs: create-and-attest
     runs-on: ubuntu-latest
     permissions:
-      contents: read      # enough to verify in a public repo
+      contents: read
 
     steps:
       - name: Download artifact
@@ -56,7 +56,7 @@ jobs:
           path: output/
 
       - name: Install GitHub CLI
-        uses: actions/setup-gh-cli@v4
+        uses: cli/gh-actions/install-gh-cli@v2
 
       - name: Verify attestation
         run: |
