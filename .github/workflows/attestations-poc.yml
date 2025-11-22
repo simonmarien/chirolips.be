@@ -55,8 +55,8 @@ jobs:
           name: output-files
           path: output/
 
+      # gh is already installed on GitHub-hosted runners
       - name: Verify attestation
         run: |
           gh attestation verify output/ \
-            -R ${{ github.repository }} \
-            --name-path "${{ env.ATTESTATION_PATH }}"
+            -R ${{ github.repository }}
