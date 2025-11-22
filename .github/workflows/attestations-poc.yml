@@ -55,9 +55,6 @@ jobs:
           name: output-files
           path: output/
 
-      - name: Install GitHub CLI
-        uses: cli/gh-actions/install-gh-cli@v2
-
       - name: Verify attestation
         run: |
           gh attestation verify output/ \
