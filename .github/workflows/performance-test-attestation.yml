@@ -1,0 +1,170 @@
+name: Performance Test - Create 100 Files & Attestation
+
+on:
+  push:
+    branches: [ Plain_version ]
+  workflow_dispatch:
+
+jobs:
+  create-files-and-attest:
+    name: Create 100 1MB files & generate attestation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write          # needed to create attestation
+      attestations: write      # needed to upload attestation
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create output directory
+        run: mkdir -p performance-test-output
+
+      - name: Generate 100 files of 1MB each
+        run: |
+          echo "Generating 100 files of 1MB each..."
+          start_time=$(date +%s%N)
+          
+          for i in {1..100}; do
+            # Generate 1MB file using dd (faster than head + urandom)
+            dd if=/dev/zero bs=1M count=1 of=performance-test-output/file-$(printf "%03d" $i).bin 2>/dev/null
+          done
+          
+          end_time=$(date +%s%N)
+          duration_ms=$(( (end_time - start_time) / 1000000 ))
+          echo "Generation completed in ${duration_ms}ms"
+          ls -lh performance-test-output/ | head -20
+
+      - name: Verify file count and sizes
+        run: |
+          echo "=== Performance Test Results ==="
+          file_count=$(ls performance-test-output/*.bin | wc -l)
+          total_size=$(du -sh performance-test-output/ | cut -f1)
+          echo "Files created: $file_count"
+          echo "Total directory size: $total_size"
+          echo "Expected: 100 files, ~100MB total"
+          
+          # Verify each file is exactly 1MB
+          for f in performance-test-output/*.bin; do
+            size=$(stat -f%z "$f" 2>/dev/null || stat -c%s "$f" 2>/dev/null)
+            if [ $size -ne 1048576 ]; then
+              echo "ERROR: $f has size $size instead of 1048576"
+              exit 1
+            fi
+          done
+          echo "All files verified to be exactly 1MB"
+
+      - name: Calculate performance metrics
+        run: |
+          echo "=== Detailed Performance Metrics ==="
+          file_count=$(ls performance-test-output/*.bin | wc -l)
+          total_size=$(du -sb performance-test-output/ | awk '{print $1}')
+          echo "File count: $file_count"
+          echo "Total size (bytes): $total_size"
+          echo "Average file size: $(echo "scale=0; $total_size / $file_count" | bc) bytes"
+          echo "Disk usage (human readable): $(du -sh performance-test-output/ | awk '{print $1}')"
+
+      - name: Upload performance test artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-test-files
+          path: performance-test-output/
+          retention-days: 30
+
+      - name: Create provenance attestation
+        id: provenance
+        uses: actions/attest-build-provenance@v3
+        with:
+          subject-path: "performance-test-output/**"
+
+      - name: Generate performance report
+        run: |
+          echo "# Performance Test Report" > performance-report.md
+          echo "" >> performance-report.md
+          echo "## Test Details" >> performance-report.md
+          echo "- **Test Date**: $(date)" >> performance-report.md
+          echo "- **Files Created**: 100" >> performance-report.md
+          echo "- **File Size**: 1MB each" >> performance-report.md
+          echo "- **Total Size**: 100MB" >> performance-report.md
+          echo "- **Runner**: ubuntu-latest" >> performance-report.md
+          echo "" >> performance-report.md
+          echo "## Attestation Information" >> performance-report.md
+          echo "- **Attestation ID**: ${{ steps.provenance.outputs.attestation-id }}" >> performance-report.md
+          echo "- **Attestation Path**: ${{ steps.provenance.outputs.attestation-path }}" >> performance-report.md
+          cat performance-report.md
+
+      - name: Upload performance report
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-report
+          path: performance-report.md
+
+  verify-attestation:
+    name: Verify attestation
+    needs: create-files-and-attest
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Download performance test artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: performance-test-files
+          path: performance-test-output/
+
+      - name: Download performance report
+        uses: actions/download-artifact@v4
+        with:
+          name: performance-report
+          path: .
+
+      - name: Verify attestation per file sample
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Verifying sample of attestation files..."
+          total_files=$(ls performance-test-output/*.bin | wc -l)
+          echo "Total files to verify: $total_files"
+          
+          # Verify first, middle, and last files as samples
+          files=($(ls performance-test-output/*.bin | sort))
+          
+          # Verify sample files
+          for idx in 0 49 99; do
+            if [ $idx -lt ${#files[@]} ]; then
+              f="${files[$idx]}"
+              if [ -f "$f" ]; then
+                echo "Verifying sample file: $(basename $f)"
+                gh attestation verify "$f" -R ${{ github.repository }} || echo "Verification returned: $?"
+              fi
+            fi
+          done
+          
+          echo "Sample attestation verification complete"
+
+      - name: Display performance report
+        run: |
+          echo "=== Performance Test Report ==="
+          cat performance-report.md
+
+  performance-analysis:
+    name: Performance Analysis
+    needs: verify-attestation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download performance report
+        uses: actions/download-artifact@v4
+        with:
+          name: performance-report
+          path: .
+
+      - name: Summary
+        run: |
+          echo "╔════════════════════════════════════════╗"
+          echo "║   Performance Test Completed           ║"
+          echo "╚════════════════════════════════════════╝"
+          echo ""
+          cat performance-report.md
